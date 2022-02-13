@@ -4,7 +4,6 @@
     /// Информация со списком существующих валют.
     /// </summary>
     [Serializable]
-    [XmlRoot("ValuteData")]
     public sealed record ValuteData
     {
         /// <summary>

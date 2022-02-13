@@ -31,5 +31,17 @@ namespace CentralBankSDK.UnitTests
                 SerializerHelper.DeserializeObj<ValuteData>(xmlStr)
             );
         }
+
+        [Theory]
+        [InlineData("ValuteData-Valid-Response.xml")]
+        public void Valid_deserialize_xml_response(string testCaseFileName)
+        {
+            var xmlStr = File.ReadAllText(Path.Combine(SetupPath, testCaseFileName));
+            var valuteData = SerializerHelper.DeserializeObj<ValuteData>(xmlStr);
+
+            Assert.NotNull(valuteData);
+            Assert.NotNull(valuteData.EnumValutes);
+            Assert.NotEmpty(valuteData.EnumValutes);
+        }
     }
 }
