@@ -1,4 +1,4 @@
-﻿namespace CetralBankSDK.Infrastracture.Helpres
+﻿namespace CentralBankSDK.Infrastracture.Helpres
 {
     /// <summary>
     /// Helper для сериализации и десериализации.

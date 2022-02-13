@@ -5,7 +5,7 @@ global using System.Xml.Serialization;
 
 global using CentralBankDailyInfoService;
 
-global using CetralBankSDK.DTO;
-global using CetralBankSDK.Infrastracture.Helpres;
-global using CetralBankSDK.Model;
-global using CetralBankSDK.Model.CursOnDateResponse;
+global using CentralBankSDK.DTO;
+global using CentralBankSDK.Infrastracture.Helpres;
+global using CentralBankSDK.Model;
+global using CentralBankSDK.Model.CursOnDateResponse;

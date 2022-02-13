@@ -1,2 +1,1 @@
-# SDK для работы с WCF сервисом ЦБ РФ
-
+# SDK for working with WCF service of the Central Bank of the Russian Federation

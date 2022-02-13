@@ -1,4 +1,4 @@
-﻿namespace CetralBankSDK.Model
+﻿namespace CentralBankSDK.Model
 {
     /// <summary>
     /// Информация со списком существующих валют.

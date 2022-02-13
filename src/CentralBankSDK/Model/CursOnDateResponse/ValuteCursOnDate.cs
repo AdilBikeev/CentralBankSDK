@@ -1,4 +1,4 @@
-﻿namespace CetralBankSDK.Model.CursOnDateResponse
+﻿namespace CentralBankSDK.Model.CursOnDateResponse
 {
     /// <summary>
     /// Информация о курсе валюты в заданную дату.

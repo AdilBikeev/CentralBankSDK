@@ -1,4 +1,4 @@
-﻿namespace CetralBankSDK.DTO
+﻿namespace CentralBankSDK.DTO
 {
     /// <summary>
     /// Информация о курсе валюты в заданную дату.

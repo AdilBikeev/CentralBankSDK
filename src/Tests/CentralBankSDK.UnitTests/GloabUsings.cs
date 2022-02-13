@@ -2,9 +2,9 @@
 global using System.IO;
 global using System.Threading.Tasks;
 
-global using CetralBankSDK;
-global using CetralBankSDK.Infrastracture.Helpres;
-global using CetralBankSDK.Model;
-global using CetralBankSDK.Model.CursOnDateResponse;
+global using CentralBankSDK;
+global using CentralBankSDK.Infrastracture.Helpres;
+global using CentralBankSDK.Model;
+global using CentralBankSDK.Model.CursOnDateResponse;
 
 global using Xunit;

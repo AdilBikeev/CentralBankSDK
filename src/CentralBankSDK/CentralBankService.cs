@@ -1,4 +1,4 @@
-﻿namespace CetralBankSDK
+﻿namespace CentralBankSDK
 {
     /// <summary>
     /// Интерфейс описывающий SDK CentralBankService.
