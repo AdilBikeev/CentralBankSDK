@@ -4,6 +4,7 @@
     /// Информация со списком курса валют в текущую дату.
     /// </summary>
     [Serializable]
+    [XmlRoot(ElementName = "ValuteData")]
     public sealed record ValuteDataCursOnDate
     {
         /// <summary>

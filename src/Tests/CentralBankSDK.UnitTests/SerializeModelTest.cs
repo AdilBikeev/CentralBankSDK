@@ -10,9 +10,10 @@ namespace CentralBankSDK.UnitTests
         /// </summary>
         private const string SetupPath = "Setup";
 
+        #region ValuteData
         [Theory]
         [InlineData("ValuteData-Valid-Response.xml")]
-        public void Can_deserialize_xml_response(string testCaseFileName)
+        public void Can_deserialize_ValuteData_xml_response(string testCaseFileName)
         {
             var xmlStr = File.ReadAllText(Path.Combine(SetupPath, testCaseFileName));
             var exception = Record.Exception(() =>
@@ -24,7 +25,7 @@ namespace CentralBankSDK.UnitTests
 
         [Theory]
         [InlineData("ValuteData-InValid-Response.xml")]
-        public void Cannot_deserialize_xml_response(string testCaseFileName)
+        public void Cannot_deserialize_ValuteData_xml_response(string testCaseFileName)
         {
             var xmlStr = File.ReadAllText(Path.Combine(SetupPath, testCaseFileName));
             Assert.Throws<InvalidOperationException>(() =>
@@ -34,7 +35,7 @@ namespace CentralBankSDK.UnitTests
 
         [Theory]
         [InlineData("ValuteData-Valid-Response.xml")]
-        public void Valid_deserialize_xml_response(string testCaseFileName)
+        public void Valid_deserialize_ValuteData_xml_response(string testCaseFileName)
         {
             var xmlStr = File.ReadAllText(Path.Combine(SetupPath, testCaseFileName));
             var valuteData = SerializerHelper.DeserializeObj<ValuteData>(xmlStr);
@@ -43,5 +44,42 @@ namespace CentralBankSDK.UnitTests
             Assert.NotNull(valuteData.EnumValutes);
             Assert.NotEmpty(valuteData.EnumValutes);
         }
+        #endregion
+
+        #region ValuteDataCursOnDate
+        [Theory]
+        [InlineData("CursOnDateResponse/ValuteData-Valid-Response.xml")]
+        public void Can_deserialize_ValuteDataCursOnDate_xml_response(string testCaseFileName)
+        {
+            var xmlStr = File.ReadAllText(Path.Combine(SetupPath, testCaseFileName));
+            var exception = Record.Exception(() =>
+                SerializerHelper.DeserializeObj<ValuteDataCursOnDate>(xmlStr)
+            );
+
+            Assert.Null(exception);
+        }
+
+        [Theory]
+        [InlineData("CursOnDateResponse/ValuteData-InValid-Response.xml")]
+        public void Cannot_deserialize_ValuteDataCursOnDate_xml_response(string testCaseFileName)
+        {
+            var xmlStr = File.ReadAllText(Path.Combine(SetupPath, testCaseFileName));
+            Assert.Throws<InvalidOperationException>(() =>
+                SerializerHelper.DeserializeObj<ValuteDataCursOnDate>(xmlStr)
+            );
+        }
+
+        [Theory]
+        [InlineData("CursOnDateResponse/ValuteData-Valid-Response.xml")]
+        public void Valid_deserialize_ValuteDataCursOnDate_xml_response(string testCaseFileName)
+        {
+            var xmlStr = File.ReadAllText(Path.Combine(SetupPath, testCaseFileName));
+            var valuteData = SerializerHelper.DeserializeObj<ValuteDataCursOnDate>(xmlStr);
+
+            Assert.NotNull(valuteData);
+            Assert.NotNull(valuteData.ValuteCursOnDate);
+            Assert.NotEmpty(valuteData.ValuteCursOnDate);
+        }
+        #endregion
     }
 }

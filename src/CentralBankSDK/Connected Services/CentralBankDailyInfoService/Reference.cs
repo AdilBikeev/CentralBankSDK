@@ -13,6 +13,7 @@ namespace CentralBankDailyInfoService
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://web.cbr.ru/", ConfigurationName="CentralBankDailyInfoService.DailyInfoSoap")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public interface DailyInfoSoap
     {
         
@@ -4733,4 +4734,5 @@ namespace CentralBankDailyInfoService
             }
         }
     }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }
