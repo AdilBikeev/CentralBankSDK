@@ -18,7 +18,7 @@
         /// производства запрососв к сервису 
         /// (по умолчанию используется 2 версия).
         /// </param>
-        public CentralBankService(DailyInfoSoapClient.EndpointConfiguration endpointConfiguration 
+        public CentralBankService(DailyInfoSoapClient.EndpointConfiguration endpointConfiguration
             = DailyInfoSoapClient.EndpointConfiguration.DailyInfoSoap12)
         {
             _cbService = new DailyInfoSoapClient(endpointConfiguration);
@@ -28,19 +28,14 @@
         public async Task<IEnumerable<EnumValutes>> GetEnumValutes(bool seld = false)
         {
             var resp = await _cbService.EnumValutesXMLAsync(new EnumValutesXMLRequest(seld));
-            ValuteData valuteData;
 
             if (resp is null)
                 throw new Exception($"Неполадки при работе с сервисом {nameof(GetEnumValutes)}: сервис ничего не ответил");
 
             var respStr = resp.EnumValutesXMLResult.OuterXml;
-            using (var reader = new StringReader(respStr))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(ValuteData));
-                valuteData = (ValuteData)serializer.Deserialize(reader)!;
-            }
+            var valuteData = SerializerHelper.DeserializeObj<ValuteData>(respStr);
 
-            return valuteData!.EnumValutes;
+            return valuteData.EnumValutes;
         }
     }
 }
