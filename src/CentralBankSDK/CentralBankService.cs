@@ -19,6 +19,13 @@
         /// </summary>
         /// <param name="date">Дата запроса для курсов.</param>
         Task<IEnumerable<ValuteCursOnDate>> GetCursOnDateXMLAsync(DateTime date);
+
+        /// <summary>
+        /// Возвращает информацию о курсе валюты в заданную дату по VchCode.
+        /// </summary>
+        /// <param name="date">Дата запроса для курса.</param>
+        /// <param name="vchCode">Код валюты.</param>
+        Task<ValuteCursOnDateReadDTO> GetCursOnDateByVchCode(DateTime date, string vchCode);
     }
 
     /// <summary>
@@ -71,6 +78,20 @@
             var valuteData = SerializerHelper.DeserializeObj<ValuteDataCursOnDate>(respStr);
 
             return valuteData.ValuteCursOnDate;
+        }
+
+        /// <inheritdoc/>
+        public async Task<ValuteCursOnDateReadDTO> GetCursOnDateByVchCode(DateTime date, string vchCode)
+        {
+            var valutes = await GetCursOnDateXMLAsync(date);
+            var valute = valutes.First(v => v.VchCode.Equals(vchCode));
+
+            return (new ValuteCursOnDateReadDTO()) with
+            {
+                Vcode = valute.Vcode,
+                Vcurs = valute.Vcurs,
+                Vname = valute.Vname,
+            };
         }
     }
 }

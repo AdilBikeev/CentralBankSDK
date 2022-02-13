@@ -7,5 +7,6 @@ global using CentralBankDailyInfoService;
 
 global using CetralBankSDK.Infrastracture.Helpres;
 global using CetralBankSDK.Model;
+global using CetralBankSDK.DTO;
 global using CetralBankSDK.Model.CursOnDateResponse;
 
