@@ -84,11 +84,11 @@
         public async Task<ValuteCursOnDateReadDTO> GetCursOnDateByVchCode(DateTime date, string vchCode)
         {
             var valutes = await GetCursOnDateXMLAsync(date);
-            var valute = valutes.First(v => v.VchCode.Equals(vchCode));
+            var valute = valutes.First(v => v.VchCode.Equals(vchCode.ToUpperInvariant()));
 
             return (new ValuteCursOnDateReadDTO()) with
             {
-                Vcode = valute.Vcode,
+                VchCode = valute.VchCode,
                 Vcurs = valute.Vcurs,
                 Vname = valute.Vname,
             };
