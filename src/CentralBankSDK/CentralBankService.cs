@@ -12,7 +12,13 @@
         /// True - перечень ежемесячных валют
         /// False — перечень ежедневных валют
         /// </param>
-        Task<IEnumerable<EnumValutes>> GetEnumValutes(bool seld = false);
+        Task<IEnumerable<EnumValutes>> GetEnumValutesAsync(bool seld = false);
+
+        /// <summary>
+        /// Возвращает список с курсом по каждой валюте в заданую дату.
+        /// </summary>
+        /// <param name="date">Дата запроса для курсов.</param>
+        Task<IEnumerable<ValuteCursOnDate>> GetCursOnDateXMLAsync(DateTime date);
     }
 
     /// <summary>
@@ -40,17 +46,31 @@
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<EnumValutes>> GetEnumValutes(bool seld = false)
+        public async Task<IEnumerable<EnumValutes>> GetEnumValutesAsync(bool seld = false)
         {
             var resp = await _cbService.EnumValutesXMLAsync(new EnumValutesXMLRequest(seld));
 
             if (resp is null)
-                throw new Exception($"Неполадки при работе с сервисом {nameof(GetEnumValutes)}: сервис ничего не ответил");
+                throw new Exception($"Неполадки при работе с сервисом {nameof(GetEnumValutesAsync)}: сервис ничего не ответил");
 
             var respStr = resp.EnumValutesXMLResult.OuterXml;
             var valuteData = SerializerHelper.DeserializeObj<ValuteData>(respStr);
 
             return valuteData.EnumValutes;
+        }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<ValuteCursOnDate>> GetCursOnDateXMLAsync(DateTime date)
+        {
+            var resp = await _cbService.GetCursOnDateXMLAsync(new GetCursOnDateXMLRequest(date));
+
+            if (resp is null)
+                throw new Exception($"Неполадки при работе с сервисом {nameof(GetCursOnDateXMLAsync)}: сервис ничего не ответил");
+
+            var respStr = resp.GetCursOnDateXMLResult.OuterXml;
+            var valuteData = SerializerHelper.DeserializeObj<ValuteDataCursOnDate>(respStr);
+
+            return valuteData.ValuteCursOnDate;
         }
     }
 }
