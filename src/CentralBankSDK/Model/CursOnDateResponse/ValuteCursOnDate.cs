@@ -14,7 +14,7 @@
         /// <summary>
         /// Номинал.
         /// </summary>
-        public string Vnom { get; init; } = default!;
+        public int Vnom { get; init; } = default!;
 
         /// <summary>
         /// Курс.

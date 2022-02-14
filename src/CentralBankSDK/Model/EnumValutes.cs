@@ -25,7 +25,7 @@
         /// <summary>
         /// Номинал.
         /// </summary>
-        public string Vnom { get; init; } = default!;
+        public int Vnom { get; init; } = default!;
 
         /// <summary>
         /// Внутренний код валюты, являющейся ’базовой’.
