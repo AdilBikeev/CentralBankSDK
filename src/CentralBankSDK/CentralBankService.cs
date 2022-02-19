@@ -1,8 +1,11 @@
-﻿namespace CentralBankSDK
+﻿using System.ServiceModel;
+
+namespace CentralBankSDK
 {
     /// <summary>
     /// Интерфейс описывающий SDK CentralBankService.
     /// </summary>
+    [ServiceContract(Namespace = nameof(CentralBankSDK), SessionMode = SessionMode.Required)]
     public interface ICentralBankService
     {
         /// <summary>
@@ -12,12 +15,14 @@
         /// True - перечень ежемесячных валют
         /// False — перечень ежедневных валют
         /// </param>
+        [OperationContract(IsOneWay = true)] 
         Task<IEnumerable<EnumValutes>> GetEnumValutesAsync(bool seld = false);
 
         /// <summary>
         /// Возвращает список с курсом по каждой валюте в заданую дату.
         /// </summary>
         /// <param name="date">Дата запроса для курсов.</param>
+        [OperationContract(IsOneWay = true)]
         Task<IEnumerable<ValuteCursOnDate>> GetCursOnDateXMLAsync(DateTime date);
 
         /// <summary>
@@ -25,6 +30,7 @@
         /// </summary>
         /// <param name="date">Дата запроса для курса.</param>
         /// <param name="vchCode">Код валюты.</param>
+        [OperationContract(IsOneWay = true)]
         Task<ValuteCursOnDateReadDTO> GetCursOnDateByVchCode(DateTime date, string vchCode);
     }
 
